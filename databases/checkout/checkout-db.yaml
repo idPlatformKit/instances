@@ -1,0 +1,8 @@
+apiVersion: database.idplatformkit.io/v1alpha1
+kind: PostgresDatabase
+metadata:
+  name: checkout-db
+  namespace: checkout
+spec:
+  writeConnectionSecretToRef:
+    name: checkout-db-conn

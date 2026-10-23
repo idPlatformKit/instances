@@ -1,0 +1,31 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CROSSPLANE_CLI_VERSION: v2.4.0
+
+jobs:
+  claims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The XRDs the claims must match live in the Orchestrator repo.
+      - uses: actions/checkout@v4
+        with:
+          repository: idPlatformKit/Orchestrator
+          path: .orchestrator
+
+      - name: Install the Crossplane CLI
+        run: |
+          curl -sSfL -o /usr/local/bin/crossplane \
+            "https://cli.crossplane.io/stable/${CROSSPLANE_CLI_VERSION}/bin/linux_amd64/crossplane"
+          chmod +x /usr/local/bin/crossplane
+
+      - name: Validate claims against the XRDs
+        run: crossplane resource validate --error-on-missing-schemas .orchestrator/compositions/ tenants/,databases/
