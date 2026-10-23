@@ -1,0 +1,9 @@
+apiVersion: platform.idplatformkit.io/v1alpha1
+kind: Tenant
+metadata:
+  name: payments
+spec:
+  ownerGroup: checkout-engineers
+  vault:
+    enabled: true
+    serviceAccountName: secret-account
