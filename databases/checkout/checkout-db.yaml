@@ -3,6 +3,10 @@ kind: PostgresDatabase
 metadata:
   name: checkout-db
   namespace: checkout
+  labels:
+    # Lets the portal find this database among same-named ones in other
+    # tenants.
+    idplatformkit.io/tenant: checkout
 spec:
   writeConnectionSecretToRef:
     name: checkout-db-conn

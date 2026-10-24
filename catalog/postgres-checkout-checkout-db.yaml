@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: postgres-checkout-checkout-db
+  title: checkout-db (checkout)
+  description: Postgres database checkout_checkout-db on the shared server, provisioned by Crossplane
+  annotations:
+    # crossplane.io/composite=<name> is only unique within a namespace, so
+    # the tenant label narrows it down.
+    backstage.io/kubernetes-label-selector: crossplane.io/composite=checkout-db,idplatformkit.io/tenant=checkout
+  links:
+    - url: https://github.com/idPlatformKit/instances/blob/main/databases/checkout/checkout-db.yaml
+      title: PostgresDatabase claim
+spec:
+  type: database
+  owner: group:default/checkout-engineers
+  dependencyOf:
+    - resource:default/tenant-checkout
