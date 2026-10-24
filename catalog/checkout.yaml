@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: tenant-checkout
+  title: checkout
+  description: Tenant namespace provisioned by Crossplane from tenants/checkout.yaml
+  annotations:
+    # Every object Crossplane composes for this Tenant, and the Tenant
+    # itself, carries this label.
+    backstage.io/kubernetes-label-selector: crossplane.io/composite=checkout
+  links:
+    - url: https://github.com/idPlatformKit/instances/blob/main/tenants/checkout.yaml
+      title: Tenant claim
+spec:
+  type: tenant
+  owner: group:default/checkout-engineers

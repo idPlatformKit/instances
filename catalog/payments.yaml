@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: tenant-payments
+  title: payments
+  description: Tenant namespace provisioned by Crossplane from tenants/payments.yaml
+  annotations:
+    # Every object Crossplane composes for this Tenant, and the Tenant
+    # itself, carries this label.
+    backstage.io/kubernetes-label-selector: crossplane.io/composite=payments
+  links:
+    - url: https://github.com/idPlatformKit/instances/blob/main/tenants/payments.yaml
+      title: Tenant claim
+spec:
+  type: tenant
+  owner: group:default/checkout-engineers
