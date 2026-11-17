@@ -1,0 +1,12 @@
+apiVersion: database.idplatformkit.io/v1alpha1
+kind: PostgresDatabase
+metadata:
+  name: checkout-db
+  namespace: checkout-staging
+  labels:
+    # Lets the portal find this database among same-named ones in other
+    # namespaces (the value is the namespace).
+    idplatformkit.io/tenant: checkout-staging
+spec:
+  writeConnectionSecretToRef:
+    name: checkout-db-conn

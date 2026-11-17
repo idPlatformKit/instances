@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   name: tenant-checkout
   title: checkout
-  description: Tenant namespace provisioned by Crossplane from tenants/checkout.yaml
+  description: Tenant namespaces (checkout-staging, checkout-prod) provisioned by Crossplane from tenants/checkout.yaml
   annotations:
     # Every object Crossplane composes for this Tenant, and the Tenant
     # itself, carries this label.

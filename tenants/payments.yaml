@@ -4,6 +4,7 @@ metadata:
   name: payments
 spec:
   ownerGroup: checkout-engineers
+  environments: [staging, prod]
   vault:
     enabled: true
     serviceAccountName: secret-account

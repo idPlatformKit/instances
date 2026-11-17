@@ -4,6 +4,7 @@ metadata:
   name: checkout
 spec:
   ownerGroup: checkout-engineers
+  environments: [staging, prod]
   vault:
     enabled: true
     serviceAccountName: checkout-api

@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   name: tenant-payments
   title: payments
-  description: Tenant namespace provisioned by Crossplane from tenants/payments.yaml
+  description: Tenant namespaces (payments-staging, payments-prod) provisioned by Crossplane from tenants/payments.yaml
   annotations:
     # Every object Crossplane composes for this Tenant, and the Tenant
     # itself, carries this label.
