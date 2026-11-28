@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The XRDs the claims must match live in the Orchestrator repo.
+      # The platform APIs (XRDs) the claims must match live in the
+      # Orchestrator repository. If you install from a fork, point this at it.
       - uses: actions/checkout@v4
         with:
           repository: idPlatformKit/Orchestrator
@@ -28,4 +29,10 @@ jobs:
           chmod +x /usr/local/bin/crossplane
 
       - name: Validate claims against the XRDs
-        run: crossplane resource validate --error-on-missing-schemas .orchestrator/compositions/ tenants/,databases/
+        run: |
+          dirs=$(for d in tenants databases apps; do [ -d "$d" ] && echo "$d/"; done | paste -sd, -)
+          if [ -z "$dirs" ] || ! find ${dirs//,/ } -name '*.yaml' | grep -q .; then
+            echo "No claims yet: nothing to validate."
+            exit 0
+          fi
+          crossplane resource validate --error-on-missing-schemas .orchestrator/compositions/ "$dirs"
